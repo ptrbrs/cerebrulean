@@ -216,7 +216,8 @@ function switchMain(targetId) {
     const newMain = document.querySelector(targetId);
     if (!newMain || newMain === currentMain) return;
 
-    const heroText = document.querySelectorAll(".section_hero-content div");
+    const oldHeroText = currentMain.querySelectorAll(".section_hero-content div");
+    const newHeroText = newMain.querySelectorAll(".section_hero-content div");
     const transBCKG = document.querySelector(".transBCKG");
 
     gsap.to(window, {
@@ -225,7 +226,7 @@ function switchMain(targetId) {
         ease: "power4.inOut",
         onComplete: () => {
             const tl = gsap.timeline();
-            tl.fromTo(heroText, {
+            tl.fromTo(oldHeroText, {
                 autoAlpha: 1,
                 xPercent: 0,
                 "--letterSp": -0.25
@@ -269,7 +270,7 @@ function switchMain(targetId) {
                     y: 0,
                     duration: 0.5
                 })
-                .fromTo(heroText, {
+                .fromTo(newHeroText, {
                     autoAlpha: 0,
                     xPercent: -50,
                     "--letterSp": 15
